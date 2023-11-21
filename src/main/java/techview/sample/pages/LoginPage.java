@@ -1,45 +1,81 @@
 package techview.sample.pages;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import techview.sample.configuration.ConfigurationUtil;
 
 public class LoginPage {
 
-	private WebDriver driver;
-
+	private WebDriverWait wait;
+	
 	@FindBy(how = How.ID, using = "form2Example1")
 	@CacheLookup
-	WebElement username;
+	private WebElement username;
 
 	@FindBy(how = How.ID, using = "form2Example2")
 	@CacheLookup
-	WebElement password;
+	private WebElement password;
 
 	@FindBy(how = How.CSS, using = "body > app-root > div > app-startup > app-login > form > button")
 	@CacheLookup
-	WebElement signin;
+	private WebElement signin;
+
+	@FindBy(how= How.LINK_TEXT, using="Forgot password?")
+	@CacheLookup
+	private WebElement forgotPassword;
+
 
 	public LoginPage(WebDriver driver) {
-		this.driver = driver;
 		driver.get(ConfigurationUtil.baseUrl);
+		this.wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		PageFactory.initElements(driver, this);
 	}
 
-	public void search() {
-		username.sendKeys("xxxxxx");
-		password.sendKeys("xxxxxx");
+	public WebElement getUsername() {
+		return username;
 	}
-	
 
-	public void click() throws InterruptedException {
-	
-		signin.click();
-		Thread.sleep(4000);
+	public WebElement getPassword() {
+		return password;
 	}
+
+	public WebElement getForgotPassword() {
+		return forgotPassword;
+	}
+	
+	public void populate(String username, String password) throws InterruptedException {
+		setUsername(username);
+		setPassword(password);
+		clickForgotPassword();
+		//clickSignin();
+	}
+
+	protected void setUsername(String username) {
+		this.username.sendKeys(username);
+	}
+
+	protected void setPassword(String password) {
+		this.password.sendKeys(password);
+	}
+	
+	protected void clickSignin() throws InterruptedException {
+		wait.until(ExpectedConditions.elementToBeClickable(signin));
+		signin.click();
+	}
+	
+	protected void clickForgotPassword() throws InterruptedException {
+		wait.until(ExpectedConditions.elementToBeClickable(password));
+		forgotPassword.click();
+	}
+
 }

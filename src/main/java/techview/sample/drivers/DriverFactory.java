@@ -29,8 +29,8 @@ public class DriverFactory {
 	private static void setDriverManageOptions(ChromeDriver driver) {
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(45, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS); removed to add explicit wait
+		//driver.manage().timeouts().pageLoadTimeout(45, TimeUnit.SECONDS);
 	}
 	
 	private static ChromeOptions getChromeOptions() {

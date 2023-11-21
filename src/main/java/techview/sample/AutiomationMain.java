@@ -14,13 +14,12 @@ public class AutiomationMain {
 	public static void main(String args[]) throws InterruptedException{
 		WebDriver webdriver = DriverFactory.getDriver("chrome");
 //		SearchItemPage searchItemPage = PageFactory.initElements(driver, SearchItemPage.class);
-//		searchItemPage.search("JBL earphones");
-//		
-		LoginPage login = PageFactory.initElements(webdriver, LoginPage.class);
-		login.search();
+//		searchItemPage.search("JBL earphones");		
+		LoginPage login = new LoginPage(webdriver);
+		login.populate("xxxxxx","xxxxxx");
 		AnalyticsPage analytics = PageFactory.initElements(webdriver, AnalyticsPage.class);
 		//webdriver.getPageSource().
-		webdriver.close();
+		//webdriver.close();
 	}
 
 }
