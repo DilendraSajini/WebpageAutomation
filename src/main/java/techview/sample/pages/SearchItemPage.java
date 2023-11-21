@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 
 import techview.sample.configuration.ConfigurationUtil;
 
@@ -26,6 +27,7 @@ public class SearchItemPage {
 	public SearchItemPage(WebDriver driver) {
 		this.driver = driver;
 		driver.get(ConfigurationUtil.baseUrl);
+		PageFactory.initElements(driver, this);
 	}
 
 	public void search(String item) throws InterruptedException {
