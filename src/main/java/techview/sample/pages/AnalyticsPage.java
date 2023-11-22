@@ -21,7 +21,7 @@ public class AnalyticsPage {
 	
 	public AnalyticsPage(WebDriver driver) {
 		this.driver= driver;
-		driver.get(ConfigurationUtil.baseUrl);
+		driver.get(ConfigurationUtil.baseUrl + "/analytics");
 		PageFactory.initElements(driver, this);
 	}
 	

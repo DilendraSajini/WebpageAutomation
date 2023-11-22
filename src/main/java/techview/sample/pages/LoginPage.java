@@ -57,7 +57,7 @@ public class LoginPage {
 		setUsername(username);
 		setPassword(password);
 		clickForgotPassword();
-		//clickSignin();
+	    clickSignin();
 	}
 
 	protected void setUsername(String username) {
